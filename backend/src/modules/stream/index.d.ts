@@ -8,3 +8,8 @@ export type MovieSearchCard = {
     hash: string,
     filesName: string,
 }
+
+export type TorrentHashName = {
+    name: string | string[],
+    hash: string,
+}
