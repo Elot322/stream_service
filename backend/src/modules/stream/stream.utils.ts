@@ -9,6 +9,7 @@ import { MovieSearchCard } from "./index";
  * */
 export async function getMoviesList(movieName: string = 'order', page: number = 1, limit: number = 10): Promise<MovieSearchCard[]> {
     const url: string = `https://www.kinopoisk.ru/s/type/film/list/1/find/${movieName}/order/relevant/page/${page}/perpage/${limit}/`
+    await getHashAndFileName('')
     let data: Array<MovieSearchCard> = []
     await axios.get(url).then((html) => {
         const $ = cheerio.load(html.data)
@@ -53,7 +54,7 @@ export async function getMoviesList(movieName: string = 'order', page: number = 
  * 
  */
 async function getHashAndFileName(movieName: string) {
-    const url: string = `https://rutracker.org`
+    const url: string = `https://top.lafa.site/film/Drama/pobeg-iz-shoushenka.htm`
     await axios.get(url).then((html) => {
         console.log(html)
     })

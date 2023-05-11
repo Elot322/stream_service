@@ -10,7 +10,26 @@ let state = {
 
 }
 
+client.on('error', (error: Error) => {
+    console.log(`${error.message}`)
+})
 
+client.on('torrent', ()=> {
+
+})
+
+router.get('/start/:magnet', (req: Request, res: Response) => {
+    const magnet = req.params.magnet
+
+    client.add(magnet, (torrent) => {
+        const files = torrent.files.map(data => ({
+            name: data.name,
+            length: data.length
+        }))
+
+        res.status(200).send(files)
+    })
+})
 
 router.get('/movies/:moviesName?/', async (req: Request, res: Response) => {
     let page = req.query.page;
